@@ -1,20 +1,19 @@
 ﻿using Microsoft.VisualBasic;
 using Pi_calculation;
 
-var xd =new PiCalc(100000000);
+var xd =new PiCalc(1000000000);
 Console.Write(xd.GetPi());
 
 namespace Pi_calculation
 {
     using Extreme.Mathematics;
- 
 
 
     public class PiCalc
     {
-        private BigInteger digits;
-        private BigInteger binaryDigits;
-        private BigFloat correctionDigits;
+        private long digits;
+        private long binaryDigits;
+        private double correctionDigits;
         private AccuracyGoal goal;
         public PiCalc(long digits=100000000 )
         {goal= AccuracyGoal.Absolute(digits + 5);
