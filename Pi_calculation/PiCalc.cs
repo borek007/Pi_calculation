@@ -1,7 +1,6 @@
-﻿using Microsoft.VisualBasic;
-using Pi_calculation;
+﻿using Pi_calculation;
 
-var xd =new PiCalc(1000000000);
+var xd =new PiCalc();
 Console.Write(xd.GetPi());
 
 namespace Pi_calculation
@@ -17,7 +16,7 @@ namespace Pi_calculation
         private AccuracyGoal goal;
         public PiCalc(long digits=100000000 )
         {goal= AccuracyGoal.Absolute(digits + 5);
-            binaryDigits=(int)(8 + digits * Math.Log(10, 2));
+            this.binaryDigits=(long)(8 + digits * Math.Log(10, 2));
             this.digits=digits;
      
         }
