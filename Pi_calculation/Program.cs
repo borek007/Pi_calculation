@@ -24,13 +24,13 @@ namespace Pi_calculation
             BigFloat pi;
 
             // The number of decimal digits.
-            int digits = 10000;
+            int digits = 10000000;
             // The equivalent number of binary digits, to account for round-off error:
             int binaryDigits = (int)(8 + digits * Math.Log(10, 2));
             // The number of digits in the last correction, if applicable.
             double correctionDigits;
-            
-            // First, create an AccuracyGoal for the number of digits we want.
+
+            // First, create an AccuracyGoal for the number of digits we want./**/
             // We'll add 5 extra digits to account for round-off error.
             AccuracyGoal goal = AccuracyGoal.Absolute(digits + 5);
             Console.WriteLine("Calculating {0} digits of pi:", digits);
@@ -38,7 +38,7 @@ namespace Pi_calculation
             // Create a stopwatch so we can time the results.
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
-            //
+            /*//
             // Method 1: Arctan formula
             // 
             // pi/4 = 88L(172) + 51L(239) + 32L(682) + 44L(5357) + 68L(12943)
@@ -110,7 +110,7 @@ namespace Pi_calculation
             pi = x1 * x1 / (1 - S);
             sw.Stop();
             Console.WriteLine("Total time: {0:F3} seconds.", sw.Elapsed.TotalSeconds, pi);
-            Console.WriteLine();
+            Console.WriteLine();*/
 
             //
             // Method 4: Borweins' quartic formula
@@ -137,17 +137,21 @@ namespace Pi_calculation
                 y3 = y * y2;
                 y4 = y2 * y2;
                 da = (BigFloat.ScaleByPowerOfTwo(y + y3, 2) + (6 * y2 + y4)) * a
-                    - BigFloat.ScaleByPowerOfTwo(y + y2 + y3, 2 * k + 1);
+                     - BigFloat.ScaleByPowerOfTwo(y + y2 + y3, 2 * k + 1);
                 da = da.RestrictPrecision(goal, RoundingMode.TowardsNearest);
                 a += da;
                 correctionDigits = -da.GetDecimalDigits();
-                Console.WriteLine("Iteration {0}: {1:F1} digits ({2:F3} seconds)", k, correctionDigits, sw.Elapsed.TotalSeconds);
+                Console.WriteLine("Iteration {0}: {1:F1} digits ({2:F3} seconds)", k, correctionDigits,
+                    sw.Elapsed.TotalSeconds);
             }
+
             pi = BigFloat.Inverse(a);
             sw.Stop();
             Console.WriteLine("Total time: {0:F3} seconds.", sw.Elapsed.TotalSeconds, pi);
             Console.WriteLine();
+            Console.WriteLine(pi);
 
+            /*
             // 
             // Method 5: The built-in method
             //
@@ -170,6 +174,8 @@ namespace Pi_calculation
 
             Console.Write("Press Enter key to exit...");
             Console.ReadLine();
+        }
+        */
         }
 
         /// <summary>

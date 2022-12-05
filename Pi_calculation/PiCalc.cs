@@ -14,7 +14,7 @@ namespace Pi_calculation
         private long binaryDigits;
         private double correctionDigits;
         private AccuracyGoal goal;
-        public PiCalc(long digits=100000000 )
+        public PiCalc(long digits=5000000 )
         {goal= AccuracyGoal.Absolute(digits + 5);
             this.binaryDigits=(long)(8 + digits * Math.Log(10, 2));
             this.digits=digits;
@@ -34,7 +34,6 @@ namespace Pi_calculation
                 BigFloat qrt = BigFloat.Root(1 - y4, 4);
                 y = BigFloat.Subtract(1, qrt, goal, RoundingMode.TowardsNearest)
                     / BigFloat.Add(1, qrt, goal, RoundingMode.TowardsNearest);
-                // y = BigFloat.Divide(1 - qrt, 1 + qrt, AccuracyGoal.InheritAbsolute, RoundingMode.TowardsNearest);
                 y2 = y * y;
                 y3 = y * y2;
                 y4 = y2 * y2;
